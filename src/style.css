@@ -1,0 +1,420 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+html {
+  width: 100%;
+}
+body {
+    background-color:#2d2d2d;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+}
+
+header {
+  padding: 16px 0px 0px 0px;
+  font-size: 24px;
+}
+
+h2 {
+  position: relative;
+  margin-top: 60px; 
+}
+
+
+.disabled {
+  pointer-events: none;
+}
+
+h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  height: 2px;
+  width: 60%;
+  background-image: linear-gradient(to right ,rgba(255, 255, 255, 0.797),rgba(255, 255, 255, 0));
+}
+
+
+
+.main {
+  width: 80vw;
+  margin: 0 auto;
+  margin-bottom: 16px;
+}
+
+.person-info-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.education-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.work-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap:30px;
+}
+
+.span2 {
+  width: 100%;
+  grid-column: span 2;
+}
+
+.form-group {
+  position:relative;
+  box-sizing: border-box;
+  margin-top:20px;
+  padding:10px 6px 3px 12px;
+  background-color:rgba(255, 255, 255, 0.09);
+  border-bottom: 2px solid #9f9f9f;
+  border-radius: 6px 6px 0px 0px;
+  transition: border-color 300ms ease;
+}
+
+.date-group {
+  position: relative;
+  background-color:rgba(255, 255, 255, 0.09);
+  border-bottom: 2px solid #9f9f9f;
+  border-radius: 6px 6px 0px 0px;
+  display: flex;
+  margin-top: 20px;
+  flex: 1;
+  align-items: center;
+}
+
+
+.date-group-container {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+
+
+.invalide,.empty {
+  border-bottom: 2px solid red;
+}
+
+.invalide::after {
+  content:'incorrect field value';
+  position:absolute;
+  left:0;
+  bottom:-19px;
+  font-size: 12px;
+  color: red;
+}
+
+.empty::after {
+  content:'this field is required';
+  position:absolute;
+  left:0;
+  bottom:-19px;
+  font-size: 12px;
+  color: red;
+}
+
+/* .form-group::after,.date-group::after {
+  content:'';
+  position:absolute;
+  left:0;
+  bottom:0;
+  height:1px;
+  width:100%;
+  background-color:#9f9f9f;
+} */
+
+.form-group::before , .date-group::before {
+    content:"";
+    position:absolute;
+    bottom:-2px;
+    left:0;
+    height:2px;
+    width:100%;
+    transform:scalex(0);
+    background-color:#87a4f3;
+    transition: transform 400ms;
+    z-index:1;
+    transform-origin:right;
+  }
+  
+  .form-group.focused::before , .date-group.focused::before {
+    transform: scalex(1);
+    transform-origin:left;
+  }
+
+  .form-group.invalide.focused::before , .date-group.invalide.focused::before {
+    transform: scalex(0);
+    transform-origin:right;
+  }
+
+.labelanimated {
+    position:absolute;
+    top:15px;
+    z-index:12;
+    color:#efefef;
+    transition:transform 300ms , font-size 300ms, color 300ms; 
+}
+
+.form-group:hover , .date-group:hover {
+    background-color: rgba(255, 255, 255, 0.13);;
+}
+
+input {
+    position:relative;
+    border:none;
+    display:block;
+    background:none;
+    outline:none;
+    width:100%;
+    box-sizing:border-box;
+    padding:12px 0px 4px 0px;
+    color:white;
+    font-size:18px;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: white !important;
+    caret-color: white;
+}
+
+
+textarea {
+    position:relative;
+    border:none;
+    display:block;
+    background:none;
+    outline:none;
+    width:100%;
+    box-sizing:border-box;
+    color:white;
+    font-size:18px;
+    resize: none;
+}
+
+.text-area-container {
+  padding-top: 20px;
+}
+
+.focused .labelanimated {
+    transform:translateY(-70%);
+    font-size:12px;
+    color:#87a4f3;
+}
+
+.add,.del,.submit {
+  cursor: pointer;
+  display: block;
+  width: 450px;
+  max-width: 70vw;
+  margin: 8px auto;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  padding: 8px 0;
+  border-radius: 5px;
+  box-shadow: 0px 3px 1px 0px rgba(0, 0, 0, 0.255);
+}
+
+.del {
+  background-color: rgb(241, 28, 28);
+}
+
+.add {
+  background-color: #2ad349;
+}
+
+.submit {
+    margin: 16px auto;
+    background-color: rgb(56, 93, 152); 
+}
+
+
+  .filled::before {
+    background-color:#00ff2f;
+  }
+  
+  .filled .labelanimated {
+    color:#00ff2f;
+  }
+
+
+.setDate {
+    position: absolute;
+    border: 0;
+    opacity:0;
+    top: 0;
+    left:0;
+    width:100%;
+    height:100%;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  
+.setDate::-webkit-calendar-picker-indicator {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+  }
+
+
+  .date-icon {
+   width:25px;
+   height:25px;
+  }
+  
+  img {
+   display:block;
+   width:100%;
+   height:100%;
+  }
+  
+  
+ .labelimg {
+    display: inline-block;
+    position: relative;
+    padding: 0px 16px;
+  } 
+
+.textdate:focus::placeholder {
+  opacity: 1;
+}
+
+.textdate::placeholder {
+  opacity: 0;
+}
+
+.date-text {
+  position:relative;
+  box-sizing: border-box;
+  padding:10px 6px 3px 12px;
+  flex: 1;
+}
+
+.invalide .labelanimated, .empty .labelanimated {
+  color: red;
+}
+
+
+@media screen and (max-width:650px) {
+     .main {
+      width: 90vw;
+      box-sizing: border-box;
+     }
+     h2::after{
+      width: 100%;
+     }
+     .person-info-container {
+      display: flex;
+      flex-direction: column;
+     }
+
+     .work-container {
+      display: flex;
+      flex-direction: column;
+     }
+}
+
+@media screen and (max-width:500px) {
+
+ .date-group-container {
+   flex-direction: column;
+   align-items: stretch;
+ }
+  
+}
+
+
+@media screen and (max-width:425px) {
+
+  header {
+    font-size: 20px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+  
+}
+
+@media screen and (max-width:345px) {
+
+  header {
+    font-size: 18px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+  
+}
+
+.PIresume,.Eduresume,.Workresume {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 16px;
+}
+
+
+.divider {
+  margin:16px 0px;
+  height: 1px;
+  width: 80%;
+  background-color: rgba(180, 180, 180, 0.456);
+}
+
+.editbtn {
+  cursor: pointer;
+  padding: 8px 32px;
+  background-color: rgb(56, 93, 152);
+  border: none;
+  outline:none;
+  color: white;
+  letter-spacing: 1px;
+  border-radius: 5px;
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+.resDel {
+  cursor: pointer;
+  padding: 8px 32px;
+  background-color:rgb(241, 28, 28);
+  border: none;
+  outline:none;
+  color: white;
+  letter-spacing: 1px;
+  border-radius: 5px;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.save {
+  width: 100px;
+  padding: 6px 0px;
+  background-color: rgb(56, 93, 152);
+  border: none;
+  outline:none;
+  color: white;
+  letter-spacing: 1px;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+.right-side {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+ 
+}
